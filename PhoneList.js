@@ -1,33 +1,27 @@
-import Phone from './Phone.js';
-import NewPhone from './NewPhone.js';
+import React from 'react';
 
-function PhoneList(props) {
-    const {contact, phones, setPhones} = props;
-
-	return (
-        <div className='phone-list'>
-            <NewPhone phones={phones} setPhones={setPhones} contact={contact} />
-
-            <table onClick={(e) => e.stopPropagation()}>
+function PhoneList({ phones }) {
+    return (
+        <div className="phone-list">
+            <h3>Phone Numbers</h3>
+            <table>
                 <thead>
                     <tr>
                         <th>Phone Type</th>
-                        <th>Number</th>
-                        <th></th>
+                        <th>Phone Number</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        phones.map((phone) => {
-                            return (
-                                <Phone key={phone.id} phone={phone} phones={phones} setPhones={setPhones} contact={contact} />
-                            );
-                        })
-                    }
+                    {phones.map(phone => (
+                        <tr key={phone.id}>
+                            <td>{phone.phone_type}</td>
+                            <td>{phone.phone_number}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>
-	);
+    );
 }
 
 export default PhoneList;
